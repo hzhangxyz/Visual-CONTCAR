@@ -57,8 +57,7 @@ var h = null;
 var w = null;
 
 function init() {
-  document.getElementById("mainCanvas").style.height=document.getElementById("mainText").clientHeight;
-  h = document.getElementById("mainCanvas").clientHeight;
+  document.getElementById("mainCanvas").style.height=h=document.getElementById("mainText").clientHeight;
   w = document.getElementById("mainCanvas").clientWidth;
 
   renderer = new THREE.WebGLRenderer({
