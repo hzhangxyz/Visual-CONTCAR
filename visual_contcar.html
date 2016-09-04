@@ -52,6 +52,7 @@ var controls = null;
 
 var meshes = [];
 var auto_rotate = true;
+var color_table = {};
 
 var h = null;
 var w = null;
@@ -90,7 +91,10 @@ function init() {
 }
 
 function getColor(name){
-  return name.split("").reduce(function(a,b){a=((a<<5)-a)+b.charCodeAt(0);return a&a},0)%100/100;
+  if(color_table.hasOwnProperty(name))
+    return color_table[name];
+  color_table[name]=Math.random()
+  return color_table[name];
 }
 
 function getNewMesh(c){
@@ -128,6 +132,7 @@ function refreshMeshes(data){
   console.log(data);
   meshes.forEach(function(m){scene.remove(m);});
   meshes=[];
+  color_table={};
   data.forEach(function(d){
     tempColor = getColor(d[3]);
     var temp = getNewMesh(tempColor);
